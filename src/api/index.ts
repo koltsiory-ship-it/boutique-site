@@ -20,4 +20,4 @@ export const getCategories = () =>
 
 // URL complète d'une photo
 export const getPhotoUrl = (photo: string | null): string =>
-  photo ? `${API_URL}${photo}` : '/placeholder.jpg';
+  photo ? photo : '/placeholder.jpg';
