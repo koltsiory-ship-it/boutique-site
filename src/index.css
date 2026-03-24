@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+
+  --color-or:      #b89a5a;
+  --color-or-clair: #f0e6cc;        /* fond doré très doux */
+  --color-noir:    #1a1a1a;         /* texte principal */
+  --color-muted:   #8a8075;         /* texte secondaire chaud */
+  --color-bordure: #e0d5c5;         /* bordures douces */
+  --color-fond:    #faf8f5;         /* fond principal crème chaud */
+  --color-fond-2:  #f3efe8;         /* fond sections alternées */
+  --color-creme:   #ffffff;         /* blanc pur pour contraste */
+}
+
+html, body, #root {
+  @apply bg-fond text-noir min-h-full;
+}
+
+@layer components {
+
+  .label-or {
+    @apply text-[10px] tracking-[0.25em] uppercase text-or font-normal;
+  }
+
+  /* Bouton principal — plein doré */
+  .btn-or {
+    @apply inline-block text-[10px] tracking-[0.25em] uppercase
+           text-white border border-or bg-or px-9 py-3.5
+           transition-all duration-200 cursor-pointer
+           hover:bg-transparent hover:text-or;
+  }
+
+  /* Bouton secondaire — contour sombre discret */
+  .btn-outline {
+    @apply inline-block text-[10px] tracking-[0.25em] uppercase
+           text-noir border border-bordure px-9 py-3.5 bg-transparent
+           transition-all duration-200 cursor-pointer
+           hover:border-or hover:text-or;
+  }
+
+  .card-produit {
+    @apply bg-white border border-bordure cursor-pointer
+           transition-all duration-200 hover:border-or;
+  }
+
+}
