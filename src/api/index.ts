@@ -1,23 +1,43 @@
-import axios from 'axios';
+import { PRODUITS, CATEGORIES } from '../data/catalogue';
 import type { Produit, Categorie } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// Simule un petit délai (optionnel — retire si tu veux instantané)
+const fakeDelay = <T>(data: T): Promise<T> =>
+  Promise.resolve(data);
 
-const api = axios.create({ baseURL: API_URL });
-
-// Produits
+// ─── Produits ──────────────────────────────────────────────────
 export const getProduits = (params?: {
   categorie_id?: number;
   search?: string;
-}) => api.get<Produit[]>('/api/produits', { params }).then(r => r.data);
+}): Promise<Produit[]> => {
+  let result = [...PRODUITS];
 
-export const getProduit = (id: number) =>
-  api.get<Produit>(`/api/produits/${id}`).then(r => r.data);
+  if (params?.categorie_id) {
+    result = result.filter(p => p.categorie_id === params.categorie_id);
+  }
 
-// Catégories
-export const getCategories = () =>
-  api.get<Categorie[]>('/api/categories').then(r => r.data);
+  if (params?.search) {
+    const q = params.search.toLowerCase();
+    result = result.filter(
+      p =>
+        p.nom.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q)
+    );
+  }
 
-// URL complète d'une photo
+  return fakeDelay(result);
+};
+
+export const getProduit = (id: number): Promise<Produit> => {
+  const produit = PRODUITS.find(p => p.id === id);
+  if (!produit) return Promise.reject(new Error(`Produit ${id} introuvable`));
+  return fakeDelay(produit);
+};
+
+// ─── Catégories ────────────────────────────────────────────────
+export const getCategories = (): Promise<Categorie[]> =>
+  fakeDelay([...CATEGORIES]);
+
+// ─── Photo ─────────────────────────────────────────────────────
 export const getPhotoUrl = (photo: string | null): string =>
-  photo ? photo : '/placeholder.jpg';
+  photo ?? '/placeholder.jpg';
