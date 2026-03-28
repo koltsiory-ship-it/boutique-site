@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../assets/logos/6.png';
+import logo from '../assets/logos/logo.webp';
 import { useState } from 'react';
 
 const NAV_LINKS = [
@@ -23,7 +23,7 @@ export default function Navbar() {
           className="h-20 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
         />
         <span className="font-cormorant text-xl font-light leading-tight text-or transition-opacity duration-300 group-hover:opacity-80">
-          <em>Kaloina Fashion</em>
+          <em>Kaloina La Mode</em>
         </span>
       </Link>
 
