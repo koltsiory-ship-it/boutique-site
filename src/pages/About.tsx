@@ -68,7 +68,7 @@ const About: React.FC = () => {
           </p>
         </div>
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/+261327954809"
           className="inline-flex items-center gap-2 mt-8 text-[10px] tracking-[0.2em] uppercase text-or border-b border-or pb-1 transition-opacity duration-200 hover:opacity-60"
         >
           Discutons de votre projet <span>→</span>
